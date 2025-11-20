@@ -137,7 +137,7 @@ M\frac{d^2 z_m}{dt^2} = F_z - Mg
 
 
 
-##  Bibliografía y Artículos Reales
+##  Bibliografía y Artículos 
 
 - Griffiths, D. J. **Introduction to Electrodynamics**, 4th Ed. Cambridge University Press, 2017.
 - Jackson, J. D. **Classical Electrodynamics**, 3rd Ed., Wiley, 1999.
