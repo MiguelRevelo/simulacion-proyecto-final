@@ -9,7 +9,7 @@ Inicialmente, partimos de estudiar el caso más simple, en donde se tiene un ún
 
 <img width="300" height="300" alt="imagen" src="https://github.com/user-attachments/assets/3c3d2719-ff24-4a13-8b0b-f7b395d4683f" />
 
-En este sistema, la interacción electromagnética acoplada resulta de dependencias críticas tanto de las propiedades de los materiales _(conductividad, permeabilidad magnética)_ como de la configuración geométrica_ (distancia, simetría)_.
+En este sistema, la interacción electromagnética acoplada resulta de dependencias críticas tanto de las propiedades de los materiales _(conductividad, permeabilidad magnética)_ como de la configuración geométrica _(distancia, simetría)_.
 
 Cuando un imán se aproxima a un anillo conductor, la variación temporal del flujo magnético que atraviesa la superficie del anillo induce corrientes de Foucault _(eddy currents)_ en su interior. Estas corrientes generan campos magnéticos propios que, de acuerdo con la ley de Lenz, se oponen al cambio de flujo que las originó. En consecuencia, pueden producir fuerzas de atracción o repulsión dependiendo de la dirección del movimiento y de la orientación del campo del imán.
 
@@ -37,9 +37,9 @@ $L\frac{di(t)}{dt} + R_i(t)= - \frac{d\phi(t)}{dt}$
 donde el flujo total $\Phi(t)$ incluye tanto la contribución del imán como el flujo autoinducido por la corriente $i(t)$ en el anillo.
 
 
-La fuerza de frenado sobre el imán resulta de la interacción entre la corriente inducida $i(t)$ en el anillo y el campo magnético del imán, , así,  las ecuaciones de movimiento del imán se derivan directamente de la segunda ley de Newton: 
+La fuerza de frenado sobre el imán resulta de la interacción Lorentz entre la corriente inducida $i(t)$ en el anillo y el campo magnético del imán, así, las ecuaciones de movimiento del imán se derivan directamente de la segunda ley de Newton: 
 
-$$m \frac{d^{2}z}{dt}= mg - F_{z}(t) - F_{\text{disipativa}}$$
+$$m \frac{d^{2}z}{dt^{2}}= mg - F_{z}(t) - F_{\text{disipativa}}$$
 
 donde $m$ es la masa del imán y $F_{\text{disipativa}}$ incluye otras fuerzas de fricción que podrían incluirse o no.
 
@@ -54,3 +54,8 @@ Dado que el objetivo del proyecto incluye extender el modelo hacia configuracion
 
 Esta herramienta se utilizará para:
 * Recoger los valores de campo y flujo necesarios para la simulación dinámica, evitando el desarrollo de expresiones matemáticas complejas para cada configuración geométrica
+
+**Bibliografía y material de apoyo utilizado:**
+
+[1.] Griffiths, D. J. (2023). Introduction to electrodynamics. Cambridge University Press.
+[2.] Purcell, E. M. (2013). Electricity and magnetism. Cambridge university press.
