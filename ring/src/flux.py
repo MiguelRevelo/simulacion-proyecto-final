@@ -34,7 +34,7 @@ class RingParams:
 class SimulationConfig:
     """Integration configuration and kinematic initial conditions."""
     time_step: float = 1e-3       # seconds
-    total_time: float = 0.5       # seconds
+    total_time: float = 0.4       # seconds
     initial_height: float = 0.2   # meters (above the ring plane)
     initial_velocity: float = 0.0 # m/s (positive = upward)
     gravity: float = 9.81         # m/s^2
@@ -231,6 +231,8 @@ def simulate_falling_magnet(
 if __name__ == "__main__":
     data = simulate_falling_magnet()
     df = pd.DataFrame(data)
+    # Add ring field column for easier plotting
+    df["ring_field2"] = df["ring_field"].apply(lambda v: v[2])  # Bz component
 
     cols = [
         ("position", "Position (m)", "Magnet Position"),
@@ -240,13 +242,14 @@ if __name__ == "__main__":
         ("emf", "EMF (V)", "Induced EMF"),
         ("current", "Current (A)", "Induced Current"),
         ("flux", "Flux (T·m²)", "Magnetic Flux"),
+        ("ring_field2", "Bz (T)", "Magnetic Field of the Ring at Magnet Position"),
     ]
 
-    fig, axes = plt.subplots(nrows=len(cols), ncols=1, sharex=True, figsize=(10, 14))
+    fig, axes = plt.subplots(nrows=len(cols), ncols=1, sharex=True, figsize=(8, 22))
     t = df["time"].to_numpy()
 
     for ax, (col, ylabel, title) in zip(axes, cols):
-        ax.plot(t, df[col].to_numpy())
+        ax.plot(t, df[col].to_numpy() if col != "ring_field" else df[col].to_numpy()[:, 2])
         ax.set_ylabel(ylabel)
         ax.set_title(title, loc="left")
         ax.grid(True, alpha=0.3)
@@ -255,3 +258,17 @@ if __name__ == "__main__":
     fig.suptitle("Falling Magnet: Kinematics & Electromagnetics", y=0.995)
     fig.tight_layout()
     plt.show()
+
+
+
+velocity = -9.81 * df["time"].to_numpy()
+
+delta_velocity = velocity - df["velocity"].to_numpy()
+
+plt.figure(figsize=(8,4))
+plt.plot(df["time"].to_numpy(), delta_velocity)
+plt.title("Error in Velocity Calculation")
+plt.xlabel("Time (s)")
+plt.ylabel("Absolute Error (m/s)")
+plt.grid(True, alpha=0.3)
+plt.show()
